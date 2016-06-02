@@ -32,6 +32,7 @@ public class Teapot extends MeshObject
         setIndices();
     }
 
+
 // BASE OBJECT (GREEN) //
 // TEST2
     private void setVerts()
@@ -107,7 +108,10 @@ public class Teapot extends MeshObject
         return result;
     }
 
+
 }
+
+
 
 
 //
