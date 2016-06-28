@@ -578,16 +578,6 @@ public class VirtualButtonRenderer implements GLSurfaceView.Renderer
                 }
             }
 
-            if(button1Set == false && button1Hold == true && showNextObject > 2)
-            {
-                if (buttonResult1.isPressed()) {
-                    button1Set = true;
-                    button1Hold = false;
-                    showNextObject = 0;
-                }
-            }
-
-
             if(showNextObject == 1) {
                 assert (textureIndex < mTextures.size());
                 thisTexture = mTextures.get(textureIndex);
