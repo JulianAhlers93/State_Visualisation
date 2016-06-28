@@ -58,6 +58,8 @@ public class VirtualButtonRenderer implements GLSurfaceView.Renderer
     private Teapot mTeapot = new Teapot();
     private FirstSegment mFirstSegment = new FirstSegment();
     private SecondSegment mSecondSegment = new SecondSegment();
+
+    private boolean bool = true;
     
     // OpenGL ES 2.0 specific (3D model):
     private int shaderProgramID = 0;
@@ -472,6 +474,20 @@ public class VirtualButtonRenderer implements GLSurfaceView.Renderer
             Matrix.rotateM(modelViewMatrix, 0, 0.0f, 1.0f, 0.0f, 0.0f);
 
             animateObject(modelViewMatrix);
+
+            /*
+            for(int i=0; i<10; i++) {
+
+                if (rotateBallAngle >= 360) {
+                    animateBackObject(modelViewMatrix);
+                }
+
+                else
+                    return;
+            }*/
+
+
+
             /*VirtualButtonResult buttonResult2 = imageTargetResult.getVirtualButtonResult(1);
 
             if (buttonResult2.isPressed() == true){
@@ -603,9 +619,10 @@ public class VirtualButtonRenderer implements GLSurfaceView.Renderer
         Matrix.rotateM(modelViewMatrix, 0, rotateBallAngle, 0.0f, 0.0f, 1.0f);
         //Matrix.rotateM(modelViewMatrix, 0, rotateBackAngle, 0.0f, 0.0f, 1.0f);
 
-        if (rotateBallAngle >= 0.4) {
-            return;
-    }
+        if (rotateBallAngle >= 360) {
+           animateBackObject(modelViewMatrix);
+        }
+
 
         prevTime = time;
     }
@@ -615,17 +632,18 @@ public class VirtualButtonRenderer implements GLSurfaceView.Renderer
         double time = System.currentTimeMillis();             // Get real time difference
         float dt = (float) (time - prevTime) / 1000;          // from frame to frame
 
-        rotateBallAngle -= dt * 90.0f / 3.1415f;     // Animate angle based on time
-        rotateBallAngle %= 360;
+        rotateBackAngle += dt * 22.5f / 3.1415f;     // Animate angle based on time
+        rotateBackAngle %= 360;
 
         //rotateBackAngle += dt * 180.0f / 3.1415f;
         //rotateBackAngle %= -180;
 
-        Matrix.rotateM(modelViewMatrix, 0, rotateBallAngle, 0.0f, 0.0f, 1.0f);
+        Matrix.rotateM(modelViewMatrix, 0, rotateBackAngle, 0.0f, 0.0f, 1.0f);
         //Matrix.rotateM(modelViewMatrix, 0, rotateBackAngle, 0.0f, 0.0f, 1.0f);
 
-        prevTime = time;
+            prevTime = time;
     }
+
 
     private void animateSecondObject(float[] modelViewMatrix)
     {
